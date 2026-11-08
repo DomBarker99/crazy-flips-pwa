@@ -1,0 +1,61 @@
+{
+  "originalGame": "https://www.crazygames.com/game/crazy-flips-3d",
+  "build": "12",
+  "engine": "Unity 2020.3.44f1",
+  "sourceFiles": [
+    {
+      "url": "https://files.crazygames.com/crazy-flips-3d/12/Build/Builds.asm.framework.js.br",
+      "downloadSha256": "a1e29d057799fe4c82f6dc5865579a56797e4f6353933ddaa181a64881ab4265",
+      "decompressedSha256": "07b8e9316f023f124e6c1b1aefbe320a9a90ab33a661cd15e327b111a041be65"
+    },
+    {
+      "url": "https://files.crazygames.com/crazy-flips-3d/12/Build/Builds.asm.js.br",
+      "downloadSha256": "70ec42d0c484aebd4eb1b94f9720683acb3cb89ac0f0c409dab4de5eb5043c5b",
+      "decompressedSha256": "d005fb63b8a89c71823a6cf7d67a285d595643ee5b31616c81ca6906bb91d57d"
+    },
+    {
+      "url": "https://files.crazygames.com/crazy-flips-3d/12/Build/Builds.asm.loader.js",
+      "downloadSha256": "9671de7a4713d81ffa2680bbfe39d6a7aa4cba6c4d4192186a26b35f7d945888",
+      "decompressedSha256": "8edfb2b7e83e5b20a055f47dbde57ed15ef2db68ba9b585c5d934b255836118d"
+    },
+    {
+      "url": "https://files.crazygames.com/crazy-flips-3d/12/Build/Builds.asm.mem.br",
+      "downloadSha256": "8d4d9da97e6e1b51005a3e3ed3b5232f450c3eeaf0a64c7abe19c9612198b1c3",
+      "decompressedSha256": "7a2abe7638ee30820dd7a6af433a90f32b98d0d45e2152d9c169c246b4c561d8"
+    },
+    {
+      "url": "https://files.crazygames.com/crazy-flips-3d/12/Build/Builds.data.br",
+      "downloadSha256": "70635b7aae5ead3ca2850ef20c12d91aba6f4a4897b9acd099fe415db215103c",
+      "decompressedSha256": "4075129683363ef8237c105b42dfc941c20eab79614326d24f53797e3ed4c5ac"
+    }
+  ],
+  "settingsPatch": {
+    "sourceSha256": "4075129683363ef8237c105b42dfc941c20eab79614326d24f53797e3ed4c5ac",
+    "outputSha256": "f3c40643ac6255b009cfdee17f49da0ee2e0216f341655b4956ab210e50e3374",
+    "asset": "resources.assets",
+    "pathId": 2007,
+    "class": "CrazyGames.CrazySettings",
+    "changes": {
+      "whitelistedDomains": {
+        "before": [],
+        "after": [
+          "https://dombarker99.github.io"
+        ]
+      }
+    },
+    "disableAdPreviews": false,
+    "adHandling": "An asynchronous no-ad adapter preserves the original request/completion lifecycle.",
+    "unchangedOtherSerializedObjects": 2713,
+    "unchangedOtherBundleChildren": 35,
+    "unchangedOtherWebDataEntries": 8,
+    "compiledGameplayCodeModified": false,
+    "outputBytes": 30905815
+  },
+  "frameworkChange": "The launcher supplies Module.offlineSdkUrl and Module.configureOfflineSdk. The local SDK is initialized with an asynchronous no-ad request adapter; compiled gameplay code remains unchanged.",
+  "sdk": {
+    "url": "https://sdk.crazygames.com/crazygames-sdk-v3.js",
+    "bytes": 89717,
+    "sha256": "e248c56db1bab15d2971ae631fe55b9ee76e452df87e4cca14bdfdf9c31740fe"
+  },
+  "compiledGameplayCodeSha256": "d005fb63b8a89c71823a6cf7d67a285d595643ee5b31616c81ca6906bb91d57d"
+}

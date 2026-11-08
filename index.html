@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111b2b">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Crazy Flips">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data: blob:; media-src 'self' data: blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Crazy Flips — Offline</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="app/styles.css">
+  <script src="app/release.js" defer></script>
+  <script src="app/offline-ads.js" defer></script>
+  <script src="app/main.js" defer></script>
+</head>
+<body>
+  <main id="launcher">
+    <section class="card" aria-labelledby="app-title">
+      <div class="identity"><img src="icons/icon.svg" width="76" height="76" alt=""><span class="eyebrow">OFFLINE EDITION</span></div>
+      <h1 id="app-title">Crazy Flips<span>3D</span></h1>
+      <p class="intro">Download once. Flip anywhere.</p>
+      <div class="status-box" role="status" aria-live="polite">
+        <span id="status-dot" aria-hidden="true"></span>
+        <div><strong id="status">Checking this device…</strong><small id="detail">Your progress stays on this device.</small></div>
+      </div>
+      <progress id="download-progress" max="100" value="0" hidden aria-label="Game download progress"></progress>
+      <button id="download" class="primary" disabled>Preparing…</button>
+      <button id="play" class="primary" hidden>Play</button>
+      <p id="rotate-hint" class="hint" hidden>Rotate your phone to landscape before playing.</p>
+      <div class="secondary-actions">
+        <button id="install" class="secondary">Install on this phone</button>
+        <button id="update" class="secondary" hidden>Update app</button>
+      </div>
+      <details id="install-help">
+        <summary>Home Screen installation</summary>
+        <p id="install-instructions"></p>
+        <p>After opening the Home Screen app, check that it says <strong>Ready offline</strong>. If your browser keeps Home Screen storage separate, download the game there once.</p>
+      </details>
+      <p class="storage-note">Finish the download before going offline. Clearing app/site data can erase the download and progress.</p>
+      <footer><span id="installed-state">No account. No ad breaks.</span><a href="NOTICE.txt" target="_blank" rel="noopener">About this edition</a></footer>
+    </section>
+  </main>
+
+  <section id="game-screen" hidden aria-label="Crazy Flips game">
+    <div id="canvas-wrap"><canvas id="game" width="1280" height="720" tabindex="0"></canvas></div>
+    <div id="game-loading" class="game-overlay"><strong>Starting game…</strong><span id="game-progress"></span></div>
+    <div id="rotation-overlay" class="game-overlay" hidden><strong>Rotate to landscape</strong><span>Your game is paused.</span></div>
+    <button id="game-menu-button" aria-label="Pause and open game menu" title="Game menu" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+    <dialog id="game-menu">
+      <h2>Game paused</h2>
+      <button id="resume" class="primary">Resume</button>
+      <button id="fullscreen" class="secondary">Full screen</button>
+      <p id="fullscreen-help" class="hint" hidden>For an app-like screen on iPhone, open this game from its Home Screen icon.</p>
+      <button id="leave-game" class="secondary">Back to launcher</button>
+    </dialog>
+  </section>
+  <noscript>This game needs JavaScript enabled.</noscript>
+</body>
+</html>

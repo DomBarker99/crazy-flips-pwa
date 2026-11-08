@@ -1,0 +1,12 @@
+Crazy Flips 3D — unofficial offline PWA packaging
+
+This project packages the original compiled browser game for Home Screen installation and offline play. It is not affiliated with CrazyGames or the original game's developers/publishers.
+
+The original game, artwork, audio, compiled Unity code, and CrazyGames SDK remain the property of their respective rights holders. No ownership or new open-source license is claimed for those materials. The original Unity editor project and C# source are not included.
+
+Original game: https://www.crazygames.com/game/crazy-flips-3d
+Distributed build: CrazyGames build 12, Unity 2020.3.44f1 (asm.js)
+
+Packaging changes: a narrowly scoped hosting allowlist entry; a local SDK loading path; an asynchronous adapter that completes ad requests without showing or fetching ads; and a separate install/download/fullscreen wrapper. File origins and integrity hashes are recorded in game/provenance.json and app/release.js.
+
+The wrapper does not send gameplay analytics. Legacy external network requests are blocked by the application's Content Security Policy and service worker. Progress is stored locally in this browser/Home Screen app. Clearing site data can remove both the downloaded game and progress. Browser storage can also be evicted by the operating system.

@@ -1,0 +1,14 @@
+{
+  "name": "crazy-flips-pwa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "node scripts/prepare.mjs",
+    "test": "node scripts/verify.mjs && node scripts/test-worker.mjs && node scripts/test-ad-policy.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
