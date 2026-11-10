@@ -1,5 +1,5 @@
 self.CF3D_RELEASE = {
-  "version": "76a66379628b6ece",
+  "version": "8202f511d7728262",
   "gameVersion": "56b1cd669e2a8893",
   "totalBytes": 79921995,
   "assets": [

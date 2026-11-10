@@ -115,8 +115,28 @@
       ui.loading.hidden=true;ui.menuButton.hidden=false;layout();syncPause();
     }catch(error){state.engineReady=false;ui.game.hidden=true;ui.launcher.hidden=false;document.body.classList.remove("playing");fail(error);}
   }
+  // Desktop: Space mirrors touch-and-hold (squat, release to jump, hold to tuck, release to land)
+  // by forwarding press/release to the game's mouse input at a point clear of on-screen buttons.
+  const SPACE_POINT={x:0.5,y:0.2};
+  let spaceHeld=false;
+  function spacePointer(type){
+    const r=ui.canvas.getBoundingClientRect();
+    ui.canvas.dispatchEvent(new MouseEvent(type,{bubbles:true,cancelable:true,view:window,button:0,buttons:type==="mousedown"?1:0,clientX:r.left+r.width*SPACE_POINT.x,clientY:r.top+r.height*SPACE_POINT.y}));
+  }
+  function releaseSpace(){if(!spaceHeld)return;spaceHeld=false;spacePointer("mouseup");}
+  window.addEventListener("keydown",event=>{
+    if(event.code!=="Space"||!state.engineReady||state.menuOpen)return;
+    event.preventDefault();
+    if(event.repeat||spaceHeld)return;
+    spaceHeld=true;spacePointer("mousedown");
+  },true);
+  window.addEventListener("keyup",event=>{
+    if(event.code!=="Space"||!spaceHeld)return;
+    event.preventDefault();releaseSpace();
+  },true);
+  window.addEventListener("blur",releaseSpace);
   async function leaveGame(){
-    state.menuOpen=false;ui.menu.close();ui.menuButton.hidden=true;
+    releaseSpace();state.menuOpen=false;ui.menu.close();ui.menuButton.hidden=true;
     if(instance){await instance.Quit();instance=null;window.unityInstance=null;}
     state.engineReady=false;state.paused=false;
     if(document.fullscreenElement)await document.exitFullscreen().catch(()=>{});
@@ -125,13 +145,13 @@
   ui.download.addEventListener("click",download);
   ui.play.addEventListener("click",play);
   ui.canvas.addEventListener("contextmenu",event=>event.preventDefault());
-  ui.menuButton.addEventListener("click",()=>{state.menuOpen=true;syncPause();$("fullscreen-help").hidden=Boolean(ui.game.requestFullscreen||ui.game.webkitRequestFullscreen)||installed();ui.menu.showModal();});
+  ui.menuButton.addEventListener("click",()=>{releaseSpace();state.menuOpen=true;syncPause();$("fullscreen-help").hidden=Boolean(ui.game.requestFullscreen||ui.game.webkitRequestFullscreen)||installed();ui.menu.showModal();});
   $("resume").addEventListener("click",()=>{state.menuOpen=false;ui.menu.close();syncPause();});
   ui.menu.addEventListener("cancel",()=>{state.menuOpen=false;syncPause();});
   $("fullscreen").addEventListener("click",()=>{requestFullscreen().then(ok=>{if(!ok)$("fullscreen-help").hidden=false;});});
   $("leave-game").addEventListener("click",()=>leaveGame().catch(fail));
   window.addEventListener("resize",layout);
-  document.addEventListener("visibilitychange",()=>{syncPause();if(!document.hidden&&!state.engineReady&&!downloadTask&&registration)refresh().catch(fail);});
+  document.addEventListener("visibilitychange",()=>{if(document.hidden)releaseSpace();syncPause();if(!document.hidden&&!state.engineReady&&!downloadTask&&registration)refresh().catch(fail);});
   document.addEventListener("fullscreenchange",layout);
   window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event;ui.install.hidden=installed();ui.install.textContent="Install app";});
   window.addEventListener("appinstalled",()=>{state.installed=true;ui.install.hidden=true;$("installed-state").textContent="Home Screen app · no ad breaks";});
